@@ -175,6 +175,63 @@
       color: #ff4f1f;
     }
 
+      .email-button {
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .email-button:hover {
+    color: #ff4f1f;
+  }
+
+  /* POPUP */
+  .popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 999;
+  }
+
+  .popup.active {
+    display: flex;
+  }
+
+  .popup-card {
+    max-width: 420px;
+    background: #f4efe6;
+    color: #111;
+    padding: 28px;
+    border-radius: 18px;
+    font-weight: 900;
+    line-height: 1.35;
+    text-transform: none;
+  }
+
+  .popup-card a {
+    color: #111;
+    text-decoration: underline;
+  }
+
+  .popup-close {
+    margin-top: 20px;
+    border: none;
+    background: #111;
+    color: #f4efe6;
+    padding: 12px 16px;
+    border-radius: 999px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
     @media (max-width: 760px) {
       body {
         overflow-x: hidden;
@@ -301,6 +358,22 @@
   </style>
 </head>
 
+<div class="popup" id="emailPopup">
+  <div class="popup-card">
+    <p>
+      Got a project in mind?<br><br>
+      Custom runs, team hats, small batches.<br>
+      Made in Ottawa. No cap.<br><br>
+
+      Email us at<br>
+      <a href="mailto:brando@nocaptcha.ca">brando@nocaptcha.ca</a>
+    </p>
+
+    <button class="popup-close" id="copyEmail">Copy email</button>
+    <button class="popup-close" id="closePopup">Close</button>
+  </div>
+</div>
+
 <body>
   <section class="splash">
     <header>
@@ -341,7 +414,7 @@
       <div class="links">
         <a href="https://www.instagram.com/captcha_caps/" target="_blank" rel="noreferrer">Instagram</a>
         <span class="dot">•</span>
-        <a href="mailto:hello@captchacaps.com">Email us</a>
+        <button class="email-button" id="emailButton">Email us</button>
         <span class="dot">•</span>
         <span>Markets soon</span>
       </div>
@@ -350,19 +423,52 @@
     </footer>
   </section>
 
-  <script>
-    const percent = document.getElementById("percent");
-    let value = 0;
+    <script>
+      const percent = document.getElementById("percent");
+      let value = 0;
 
-    const loader = setInterval(() => {
-      if (value >= 72) {
-        clearInterval(loader);
-        return;
+      const loader = setInterval(() => {
+        if (value >= 72) {
+          clearInterval(loader);
+          return;
+        }
+
+        value++;
+        percent.textContent = value + "%";
+      }, 42);
+
+      // EMAIL POPUP
+      const emailButton = document.getElementById("emailButton");
+      const emailPopup = document.getElementById("emailPopup");
+      const closePopup = document.getElementById("closePopup");
+      const copyEmail = document.getElementById("copyEmail");
+
+      if (emailButton && emailPopup) {
+        emailButton.addEventListener("click", () => {
+          emailPopup.classList.add("active");
+        });
       }
 
-      value++;
-      percent.textContent = value + "%";
-    }, 42);
-  </script>
+      if (closePopup && emailPopup) {
+        closePopup.addEventListener("click", () => {
+          emailPopup.classList.remove("active");
+        });
+      }
+
+      if (emailPopup) {
+        emailPopup.addEventListener("click", (e) => {
+          if (e.target === emailPopup) {
+            emailPopup.classList.remove("active");
+          }
+        });
+      }
+
+      if (copyEmail) {
+        copyEmail.addEventListener("click", async () => {
+          await navigator.clipboard.writeText("brando@nocaptcha.ca");
+          copyEmail.textContent = "Copied";
+        });
+      }
+    </script>
 </body>
 </html>
