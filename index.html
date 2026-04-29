@@ -181,9 +181,20 @@
     }
 
     @media (max-width: 760px) {
-      body {
-        overflow: auto;
+      h1 {
+        font-size: clamp(38px, 11vw, 58px);
+        line-height: 0.95;
+        max-width: 100%;
+        letter-spacing: -0.055em;
       }
+    }
+
+        @media (max-width: 760px) {
+          .splash {
+            padding: 34px 26px;
+            overflow-x: hidden;
+          }
+        }
 
       .splash {
         min-height: 100dvh;
@@ -237,7 +248,6 @@
       .links {
         gap: 14px;
       }
-    }
   </style>
 </head>
 
@@ -254,7 +264,11 @@
     </header>
 
     <main>
-      <h1>We’re building Ottawa’s own hat manufacturer.</h1>
+      <h1>
+      We’re building<br />
+      Ottawa’s own<br />
+      hat manufacturer.
+      </h1>
 
       <p class="blurb">
         Small batch headwear. Built with purpose.<br />
