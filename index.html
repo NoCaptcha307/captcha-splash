@@ -20,7 +20,7 @@
       color: #f4efe6;
     }
 
-      body {
+    body {
       overflow-x: hidden;
       overflow-y: auto;
     }
@@ -52,12 +52,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-
       text-transform: uppercase;
       font-weight: 900;
       letter-spacing: 0.04em;
       font-size: 14px;
-
       position: relative;
       z-index: 2;
     }
@@ -146,14 +144,11 @@
     footer {
       position: relative;
       z-index: 2;
-
       display: flex;
       justify-content: space-between;
       gap: 24px;
       align-items: flex-end;
-
       padding-bottom: 0;
-
       text-transform: uppercase;
       font-size: clamp(11px, 1vw, 14px);
       font-weight: 900;
@@ -181,73 +176,128 @@
     }
 
     @media (max-width: 760px) {
-      h1 {
-        font-size: clamp(38px, 11vw, 58px);
-        line-height: 0.95;
-        max-width: 100%;
-        letter-spacing: -0.055em;
+      body {
+        overflow-x: hidden;
+        overflow-y: auto;
       }
-    }
-
-        @media (max-width: 760px) {
-          .splash {
-            padding: 34px 26px;
-            overflow-x: hidden;
-          }
-        }
 
       .splash {
-        min-height: 100dvh;
-        padding: 28px;
+        min-height: 100svh;
+        height: auto;
+        overflow: visible;
+        padding: 34px 26px calc(42px + env(safe-area-inset-bottom));
+
         background-image:
           linear-gradient(
             90deg,
-            rgba(0, 0, 0, 0.68) 0%,
-            rgba(0, 0, 0, 0.36) 52%,
-            rgba(0, 0, 0, 0.10) 100%
+            rgba(0, 0, 0, 0.72) 0%,
+            rgba(0, 0, 0, 0.44) 52%,
+            rgba(0, 0, 0, 0.18) 100%
           ),
           url("captcha-hero.png");
-        background-position: 62% center;
+
+        background-position: 58% center;
+        grid-template-rows: auto auto auto;
+        gap: 34px;
       }
 
       header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: 10px;
         font-size: 12px;
       }
 
-      .logo {
-        font-size: 26px;
+      .logo img {
+        height: 58px;
+      }
+
+      .tagline {
+        text-align: left;
+        white-space: normal;
+        font-size: 13px;
       }
 
       main {
-        margin-bottom: 44px;
+        align-self: start;
         max-width: 100%;
+        margin: 0;
       }
 
       h1 {
-        font-size: clamp(42px, 13vw, 64px);
+        font-size: clamp(40px, 11.5vw, 56px);
+        line-height: 0.95;
+        letter-spacing: -0.055em;
+        max-width: 100%;
+        text-wrap: normal;
       }
 
       .blurb {
-        font-size: 17px;
-        max-width: 360px;
+        margin-top: 26px;
+        font-size: 18px;
+        line-height: 1.35;
+        max-width: 100%;
       }
 
       .loader {
-        max-width: 340px;
+        margin-top: 38px;
+        max-width: 100%;
+      }
+
+      .loader-top {
+        font-size: 13px;
+      }
+
+      .bar {
+        height: 18px;
+      }
+
+      .fill {
+        width: 72%;
+        animation: none;
       }
 
       footer {
         flex-direction: column;
         align-items: flex-start;
-        font-size: 12px;
+        gap: 20px;
+        font-size: 13px;
+        padding-bottom: env(safe-area-inset-bottom);
       }
 
       .links {
         gap: 14px;
       }
+    }
+
+    @media (max-width: 390px) {
+      .splash {
+        padding-left: 22px;
+        padding-right: 22px;
+        gap: 28px;
+      }
+
+      .logo img {
+        height: 50px;
+      }
+
+      h1 {
+        font-size: clamp(36px, 10.5vw, 46px);
+      }
+
+      .blurb {
+        font-size: 16px;
+      }
+
+      .loader-top,
+      footer {
+        font-size: 12px;
+      }
+
+      .links {
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 
@@ -265,9 +315,9 @@
 
     <main>
       <h1>
-      We’re building<br />
-      Ottawa’s own<br />
-      hat manufacturer.
+        We’re building<br />
+        Ottawa’s own<br />
+        hat manufacturer.
       </h1>
 
       <p class="blurb">
@@ -278,7 +328,7 @@
       <div class="loader">
         <div class="loader-top">
           <span>Loading experience</span>
-          <span id="percent">0%</span>
+          <span id="percent">72%</span>
         </div>
 
         <div class="bar">
