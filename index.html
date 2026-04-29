@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Captcha | Made in Ottawa. No cap.</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #111;
+      color: #f4efe6;
+    }
+
+      body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .splash {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      overflow: hidden;
+
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.48) 0%,
+          rgba(0, 0, 0, 0.25) 38%,
+          rgba(0, 0, 0, 0.04) 76%
+        ),
+        url("captcha-hero.png");
+      background-size: cover;
+      background-position: center;
+
+      padding: 56px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      font-size: 14px;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+      display: block;
+    }
+
+    .tagline {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+      align-self: center;
+      margin: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 5.4vw, 76px);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+      text-transform: uppercase;
+      font-weight: 900;
+      max-width: 620px;
+      text-wrap: balance;
+    }
+
+    .blurb {
+      margin-top: 28px;
+      font-size: clamp(18px, 1.75vw, 23px);
+      line-height: 1.45;
+      max-width: 560px;
+      color: #fffaf0;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .loader {
+      margin-top: 48px;
+      max-width: 440px;
+    }
+
+    .loader-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .bar {
+      height: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(4px);
+    }
+
+    .fill {
+      width: 0%;
+      height: 100%;
+      background: #f4efe6;
+      border-radius: 999px;
+      animation: load 4s ease-in-out forwards;
+    }
+
+    @keyframes load {
+      from {
+        width: 0%;
+      }
+
+      to {
+        width: 72%;
+      }
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-end;
+
+      padding-bottom: 0;
+
+      text-transform: uppercase;
+      font-size: clamp(11px, 1vw, 14px);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .dot {
+      color: #ff4f1f;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ff4f1f;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        overflow: auto;
+      }
+
+      .splash {
+        min-height: 100dvh;
+        padding: 28px;
+        background-image:
+          linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.68) 0%,
+            rgba(0, 0, 0, 0.36) 52%,
+            rgba(0, 0, 0, 0.10) 100%
+          ),
+          url("captcha-hero.png");
+        background-position: 62% center;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 12px;
+      }
+
+      .logo {
+        font-size: 26px;
+      }
+
+      main {
+        margin-bottom: 44px;
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: clamp(42px, 13vw, 64px);
+      }
+
+      .blurb {
+        font-size: 17px;
+        max-width: 360px;
+      }
+
+      .loader {
+        max-width: 340px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 12px;
+      }
+
+      .links {
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="splash">
+    <header>
+      <div class="logo">
+        <img src="logo.png" alt="Captcha logo" />
+      </div>
+
+      <div class="tagline">
+        Made in Ottawa. No cap.
+      </div>
+    </header>
+
+    <main>
+      <h1>We’re building Ottawa’s own hat manufacturer.</h1>
+
+      <p class="blurb">
+        Small batch headwear. Built with purpose.<br />
+        Designed and made in Ottawa. No cap.
+      </p>
+
+      <div class="loader">
+        <div class="loader-top">
+          <span>Loading experience</span>
+          <span id="percent">0%</span>
+        </div>
+
+        <div class="bar">
+          <div class="fill"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="links">
+        <a href="https://www.instagram.com/captcha_caps/" target="_blank" rel="noreferrer">Instagram</a>
+        <span class="dot">•</span>
+        <a href="mailto:hello@captchacaps.com">Email us</a>
+        <span class="dot">•</span>
+        <span>Markets soon</span>
+      </div>
+
+      <div>Full site coming soon</div>
+    </footer>
+  </section>
+
+  <script>
+    const percent = document.getElementById("percent");
+    let value = 0;
+
+    const loader = setInterval(() => {
+      if (value >= 72) {
+        clearInterval(loader);
+        return;
+      }
+
+      value++;
+      percent.textContent = value + "%";
+    }, 42);
+  </script>
+</body>
+</html>
